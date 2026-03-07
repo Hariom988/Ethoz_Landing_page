@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+
 const NAV = [
   { id: "home", label: "Home" },
   { id: "production", label: "Production" },
@@ -11,26 +12,32 @@ const SERVICES = [
   {
     title: "Apparel Manufacturing",
     desc: "End-to-end garment production for fashion brands of all sizes, from sampling to final delivery.",
+    img: "/image1.jpeg",
   },
   {
     title: "Bulk Clothing Production",
     desc: "Consistent, high-volume runs with strict quality checks built into every stage.",
+    img: "/image3.jpeg",
   },
   {
     title: "Private Label",
     desc: "We produce it, you brand it. Clean white-label manufacturing with full confidentiality.",
+    img: "/image2.jpeg",
   },
   {
     title: "Design to Production",
     desc: "Technical support from your design files to production-ready patterns and samples.",
+    img: "/image5.jpeg",
   },
   {
     title: "Quality Control",
     desc: "Multi-point inspection at every checkpoint before anything leaves our floor.",
+    img: "/image4.jpeg",
   },
   {
     title: "Brand Partnerships",
     desc: "Ongoing manufacturing relationships built on transparency, reliability, and results.",
+    img: "/image1.jpeg",
   },
 ];
 
@@ -40,6 +47,12 @@ const WHY = [
   "Reliable bulk manufacturing capability",
   "Trusted by multiple fashion brands",
   "Timely delivery and professional process",
+];
+
+const STATS = [
+  { value: "85,000+", label: "Units / Month", sub: "Garmenting" },
+  { value: "45,000+", label: "Units / Month", sub: "Printing" },
+  { value: "6", label: "Inhouse", sub: "Departments" },
 ];
 
 function go(id: string) {
@@ -243,7 +256,7 @@ export default function Home() {
                 time.
               </p>
 
-              <div className="flex flex-wrap gap-3 mb-14">
+              <div className="flex flex-wrap gap-3 mb-10">
                 <PrimaryBtn
                   label="Our Services"
                   onClick={() => go("production")}
@@ -253,13 +266,33 @@ export default function Home() {
                   onClick={() => go("contact")}
                 />
               </div>
+
+              <div className="flex items-stretch w-fit border border-subtle rounded-2xl overflow-hidden bg-surface/80 backdrop-blur-sm">
+                {STATS.map(({ value, label, sub }, i) => (
+                  <div
+                    key={sub}
+                    className={`flex flex-col justify-center px-5 py-4
+                      ${i < STATS.length - 1 ? "border-r border-subtle" : ""}`}
+                  >
+                    <span className="font-serif font-bold text-[24px] leading-none text-ink">
+                      {value}
+                    </span>
+                    <span className="text-[11px] font-semibold text-accent mt-1 leading-tight">
+                      {sub}
+                    </span>
+                    <span className="text-[10px] text-muted leading-tight">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="hidden lg:block absolute top-0 right-0 bottom-0 w-[56%]">
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
+                src="/banner.jpeg"
                 alt="Garment manufacturing"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
               <div
                 className="absolute inset-0"
@@ -272,9 +305,9 @@ export default function Home() {
 
             <div className="lg:hidden absolute inset-0 -z-10">
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+                src="/banner.jpeg"
                 alt="Garment manufacturing"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-linear-to-b from-bg/95 via-bg/80 to-bg/60" />
             </div>
@@ -293,12 +326,15 @@ export default function Home() {
               </h2>
             </div>
 
-            <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-subtle
-              border border-subtle rounded-2xl overflow-hidden"
-            >
-              {SERVICES.map(({ title, desc }, i) => (
-                <ServiceCard key={i} title={title} desc={desc} index={i} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-subtle border border-subtle rounded-2xl overflow-hidden">
+              {SERVICES.map(({ title, desc, img }, i) => (
+                <ServiceCard
+                  key={i}
+                  title={title}
+                  desc={desc}
+                  index={i}
+                  img={img}
+                />
               ))}
             </div>
           </div>
@@ -336,6 +372,24 @@ export default function Home() {
                     quality control at every stage.
                   </p>
                 </div>
+
+                <div className="mt-8 grid grid-cols-2 gap-3">
+                  <div className="rounded-xl overflow-hidden aspect-[4/3]">
+                    <img
+                      src="/image4.jpeg"
+                      alt="Factory floor"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="rounded-xl overflow-hidden aspect-[4/3]">
+                    <img
+                      src="/image5.jpeg"
+                      alt="Sewing detail"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
                 <div className="mt-9">
                   <PrimaryBtn
                     label="Work With Us"
@@ -355,7 +409,15 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div className="mt-6 p-6 rounded-2xl bg-accent-bg">
+                <div className="mt-6 rounded-2xl overflow-hidden">
+                  <img
+                    src="/image3.jpeg"
+                    alt="Fabric rolls"
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
+
+                <div className="mt-4 p-6 rounded-2xl bg-accent-bg">
                   <p className="text-[15px] leading-[1.75] font-medium text-accent">
                     "We believe every stitch is a promise to the brand that
                     trusts us."
@@ -369,8 +431,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-15 md:py-15 bg-accent">
-          <div className="max-w-6xl mx-auto px-3 text-center">
+        <section className="relative py-15 md:py-15 bg-accent overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <img
+              src="/image2.jpeg"
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="relative max-w-6xl mx-auto px-3 text-center">
             <p className="text-[12px] font-semibold tracking-[.2em] uppercase text-white/65 mb-5">
               Ready to get started?
             </p>
@@ -403,24 +472,53 @@ export default function Home() {
                   <br />
                   together.
                 </h2>
-                <p className="text-[15px] leading-[1.85] text-muted mb-10">
+                <p className="text-[15px] leading-[1.85] text-muted mb-8">
                   Tell us about your brand and what you need. We respond within
                   one business day.
                 </p>
+
+                <div className="rounded-xl overflow-hidden mb-8">
+                  <img
+                    src="/image1.jpeg"
+                    alt="Sewing machine"
+                    className="w-full h-52 object-cover"
+                  />
+                </div>
+
                 <div className="flex flex-col gap-6">
                   {[
-                    { icon: "✉", label: "Email", val: "hello@ethoz.com" },
-                    { icon: "☎", label: "Phone", val: "+91 7827074567" },
+                    {
+                      icon: "✉",
+                      label: "Email",
+                      val: "info@ethoz.in",
+                      href: "mailto:info@ethoz.in",
+                    },
+                    {
+                      icon: "☎",
+                      label: "Phone",
+                      val: "+91 98100 09932",
+                      href: "tel:+919810009932",
+                    },
                     {
                       icon: "◎",
-                      label: "Location",
-                      val: "New Delhi, Delhi-110080",
+                      label: "Address",
+                      val: "34, Block B, Sector 88, Noida, Uttar Pradesh 201304",
+                      href: "https://maps.google.com/?q=34,+Block+B,+Sector+88,+Noida,+Uttar+Pradesh+201304",
                     },
-                  ].map(({ icon, label, val }) => (
-                    <div key={label} className="flex items-center gap-4">
+                  ].map(({ icon, label, val, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={label === "Address" ? "_blank" : undefined}
+                      rel={
+                        label === "Address" ? "noopener noreferrer" : undefined
+                      }
+                      className="flex items-center gap-4 no-underline group"
+                    >
                       <span
                         className="w-10 h-10 rounded-xl flex items-center justify-center
-                        text-[15px] shrink-0 bg-accent-bg text-accent"
+                        text-[15px] shrink-0 bg-accent-bg text-accent
+                        group-hover:bg-accent group-hover:text-white transition-colors duration-200"
                       >
                         {icon}
                       </span>
@@ -428,11 +526,11 @@ export default function Home() {
                         <p className="text-[11px] font-semibold tracking-[.15em] uppercase text-muted">
                           {label}
                         </p>
-                        <p className="text-[15px] font-semibold text-ink mt-0.5">
+                        <p className="text-[15px] font-semibold text-ink mt-0.5 group-hover:text-accent transition-colors duration-200">
                           {val}
                         </p>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -491,85 +589,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <footer className="py-12 bg-ink">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <img
-                    src="/logo.jpeg"
-                    alt="Ethoz"
-                    className="w-7 h-7 rounded-md object-cover"
-                  />
-                  <span className="text-[17px] font-bold text-white font-sans">
-                    Ethoz
-                  </span>
-                </div>
-                <p className="text-[14px] leading-[1.7] text-white/40 max-w-60">
-                  Professional garment manufacturing for fashion brands.
-                </p>
-              </div>
-
-              {[
-                {
-                  title: "Navigate",
-                  links: NAV.map(({ id, label }) => ({ id, label })),
-                },
-                {
-                  title: "Services",
-                  links: [
-                    { id: "production", label: "Apparel Mfg" },
-                    { id: "production", label: "Bulk Production" },
-                    { id: "production", label: "Private Label" },
-                    { id: "production", label: "Quality Control" },
-                  ],
-                },
-                {
-                  title: "Company",
-                  links: [
-                    { id: "about", label: "About Us" },
-                    { id: "contact", label: "Contact" },
-                    { id: "about", label: "Our Process" },
-                    { id: "contact", label: "Partners" },
-                  ],
-                },
-              ].map(({ title, links }) => (
-                <div key={title}>
-                  <p className="text-[11px] font-semibold tracking-[.18em] uppercase text-white/35 mb-4">
-                    {title}
-                  </p>
-                  <div className="flex flex-col gap-2.5">
-                    {links.map(({ id, label }) => (
-                      <button
-                        key={label}
-                        onClick={() => id && go(id)}
-                        className="text-left text-[14px] text-white/45 hover:text-white/90
-                          transition-colors duration-200 bg-transparent border-none cursor-pointer font-sans"
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap justify-between items-center gap-4 pt-8 border-t border-white/8">
-              <p className="text-[13px] text-white/25">
-                © 2026 Ethoz. All rights reserved.
-              </p>
-              <p className="text-[13px] text-white/25">
-                Crafted by{" "}
-                <b>
-                  <a href="https://www.ynrsgroup.com" target="_blank">
-                    YNRS Group
-                  </a>
-                </b>
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );
@@ -579,28 +598,33 @@ function ServiceCard({
   title,
   desc,
   index,
+  img,
 }: {
   title: string;
   desc: string;
   index: number;
+  img: string;
 }) {
   return (
-    <div className="group p-7 cursor-default bg-surface hover:bg-accent-bg transition-colors duration-200">
-      <div
-        className="w-9 h-9 rounded-lg flex items-center justify-center mb-5
-        bg-bg group-hover:bg-accent transition-colors duration-200"
-      >
-        <span className="text-[12px] font-bold text-muted group-hover:text-white transition-colors duration-200">
-          {String(index + 1).padStart(2, "0")}
-        </span>
+    <div className="group cursor-default bg-surface hover:bg-accent-bg transition-colors duration-200 overflow-hidden">
+      <div className="overflow-hidden h-40">
+        <img
+          src={img}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
-      <h3
-        className="text-[17px] font-bold font-sans mb-2.5
-        text-ink group-hover:text-accent transition-colors duration-200"
-      >
-        {title}
-      </h3>
-      <p className="text-[14px] leading-[1.75] text-muted">{desc}</p>
+      <div className="p-7">
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-5 bg-bg group-hover:bg-accent transition-colors duration-200">
+          <span className="text-[12px] font-bold text-muted group-hover:text-white transition-colors duration-200">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
+        <h3 className="text-[17px] font-bold font-sans mb-2.5 text-ink group-hover:text-accent transition-colors duration-200">
+          {title}
+        </h3>
+        <p className="text-[14px] leading-[1.75] text-muted">{desc}</p>
+      </div>
     </div>
   );
 }
@@ -620,10 +644,7 @@ function WhyRow({
       hover:bg-accent-bg transition-colors duration-200
       ${index < total - 1 ? "border-b border-subtle" : ""}`}
     >
-      <span
-        className="w-6 h-6 rounded-full flex items-center justify-center shrink-0
-        bg-accent-bg group-hover:bg-accent transition-colors duration-200"
-      >
+      <span className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-accent-bg group-hover:bg-accent transition-colors duration-200">
         <svg
           className="w-3 h-3 text-accent group-hover:text-white transition-colors duration-200"
           viewBox="0 0 24 24"
