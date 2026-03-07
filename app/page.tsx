@@ -315,8 +315,8 @@ export default function Home() {
                     {
                       icon: "◎",
                       label: "Address",
-                      val: "34, Block B, Sector 88, Noida, Uttar Pradesh 201304",
-                      href: "https://maps.google.com/?q=34,+Block+B,+Sector+88,+Noida,+Uttar+Pradesh+201304",
+                      val: "C-71 Sector 88 Noida 201305",
+                      href: "https://maps.google.com/?q=34,+Block+C,+Sector+88,+Noida,+Uttar+Pradesh+201305",
                     },
                   ].map(({ icon, label, val, href }) => (
                     <a
