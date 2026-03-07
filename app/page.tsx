@@ -49,6 +49,12 @@ const WHY = [
   "Timely delivery and professional process",
 ];
 
+const STATS = [
+  { value: "85,000+", label: "Units / Month", sub: "Garmenting" },
+  { value: "45,000+", label: "Units / Month", sub: "Printing" },
+  { value: "6", label: "Inhouse", sub: "Departments" },
+];
+
 function go(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
@@ -250,7 +256,7 @@ export default function Home() {
                 time.
               </p>
 
-              <div className="flex flex-wrap gap-3 mb-14">
+              <div className="flex flex-wrap gap-3 mb-10">
                 <PrimaryBtn
                   label="Our Services"
                   onClick={() => go("production")}
@@ -259,6 +265,26 @@ export default function Home() {
                   label="Partner With Us"
                   onClick={() => go("contact")}
                 />
+              </div>
+
+              <div className="flex items-stretch w-fit border border-subtle rounded-2xl overflow-hidden bg-surface/80 backdrop-blur-sm">
+                {STATS.map(({ value, label, sub }, i) => (
+                  <div
+                    key={sub}
+                    className={`flex flex-col justify-center px-5 py-4
+                      ${i < STATS.length - 1 ? "border-r border-subtle" : ""}`}
+                  >
+                    <span className="font-serif font-bold text-[24px] leading-none text-ink">
+                      {value}
+                    </span>
+                    <span className="text-[11px] font-semibold text-accent mt-1 leading-tight">
+                      {sub}
+                    </span>
+                    <span className="text-[10px] text-muted leading-tight">
+                      {label}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -425,6 +451,7 @@ export default function Home() {
                   Tell us about your brand and what you need. We respond within
                   one business day.
                 </p>
+
                 <div className="flex flex-col gap-6">
                   {[
                     {
@@ -529,85 +556,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <footer className="py-12 bg-ink">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-12">
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <img
-                    src="/logo.jpeg"
-                    alt="Ethoz"
-                    className="w-7 h-7 rounded-md object-cover"
-                  />
-                  <span className="text-[17px] font-bold text-white font-sans">
-                    Ethoz
-                  </span>
-                </div>
-                <p className="text-[14px] leading-[1.7] text-white/40 max-w-60">
-                  Professional garment manufacturing for fashion brands.
-                </p>
-              </div>
-
-              {[
-                {
-                  title: "Navigate",
-                  links: NAV.map(({ id, label }) => ({ id, label })),
-                },
-                {
-                  title: "Services",
-                  links: [
-                    { id: "production", label: "Apparel Mfg" },
-                    { id: "production", label: "Bulk Production" },
-                    { id: "production", label: "Private Label" },
-                    { id: "production", label: "Quality Control" },
-                  ],
-                },
-                {
-                  title: "Company",
-                  links: [
-                    { id: "about", label: "About Us" },
-                    { id: "contact", label: "Contact" },
-                    { id: "about", label: "Our Process" },
-                    { id: "contact", label: "Partners" },
-                  ],
-                },
-              ].map(({ title, links }) => (
-                <div key={title}>
-                  <p className="text-[11px] font-semibold tracking-[.18em] uppercase text-white/35 mb-4">
-                    {title}
-                  </p>
-                  <div className="flex flex-col gap-2.5">
-                    {links.map(({ id, label }) => (
-                      <button
-                        key={label}
-                        onClick={() => id && go(id)}
-                        className="text-left text-[14px] text-white/45 hover:text-white/90
-                          transition-colors duration-200 bg-transparent border-none cursor-pointer font-sans"
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-wrap justify-between items-center gap-4 pt-8 border-t border-white/8">
-              <p className="text-[13px] text-white/25">
-                © 2026 Ethoz. All rights reserved.
-              </p>
-              <p className="text-[13px] text-white/25">
-                Crafted by{" "}
-                <b>
-                  <a href="https://www.ynrsgroup.com" target="_blank">
-                    YNRS Group
-                  </a>
-                </b>
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );
@@ -669,10 +617,7 @@ function WhyRow({
       hover:bg-accent-bg transition-colors duration-200
       ${index < total - 1 ? "border-b border-subtle" : ""}`}
     >
-      <span
-        className="w-6 h-6 rounded-full flex items-center justify-center shrink-0
-        bg-accent-bg group-hover:bg-accent transition-colors duration-200"
-      >
+      <span className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-accent-bg group-hover:bg-accent transition-colors duration-200">
         <svg
           className="w-3 h-3 text-accent group-hover:text-white transition-colors duration-200"
           viewBox="0 0 24 24"
