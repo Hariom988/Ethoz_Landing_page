@@ -373,23 +373,6 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="mt-8 grid grid-cols-2 gap-3">
-                  <div className="rounded-xl overflow-hidden aspect-[4/3]">
-                    <img
-                      src="/image4.jpeg"
-                      alt="Factory floor"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="rounded-xl overflow-hidden aspect-[4/3]">
-                    <img
-                      src="/image5.jpeg"
-                      alt="Sewing detail"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-
                 <div className="mt-9">
                   <PrimaryBtn
                     label="Work With Us"
@@ -398,7 +381,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
+              <div className="md:mt-15">
                 <h3 className="text-[13px] font-semibold tracking-[.18em] uppercase text-muted mb-6">
                   Why brands choose Ethoz
                 </h3>
@@ -407,14 +390,6 @@ export default function Home() {
                   {WHY.map((text, i) => (
                     <WhyRow key={i} index={i} text={text} total={WHY.length} />
                   ))}
-                </div>
-
-                <div className="mt-6 rounded-2xl overflow-hidden">
-                  <img
-                    src="/image3.jpeg"
-                    alt="Fabric rolls"
-                    className="w-full h-48 object-cover"
-                  />
                 </div>
 
                 <div className="mt-4 p-6 rounded-2xl bg-accent-bg">
@@ -477,14 +452,6 @@ export default function Home() {
                   one business day.
                 </p>
 
-                <div className="rounded-xl overflow-hidden mb-8">
-                  <img
-                    src="/image1.jpeg"
-                    alt="Sewing machine"
-                    className="w-full h-52 object-cover"
-                  />
-                </div>
-
                 <div className="flex flex-col gap-6">
                   {[
                     {
@@ -517,8 +484,8 @@ export default function Home() {
                     >
                       <span
                         className="w-10 h-10 rounded-xl flex items-center justify-center
-                        text-[15px] shrink-0 bg-accent-bg text-accent
-                        group-hover:bg-accent group-hover:text-white transition-colors duration-200"
+        text-[15px] shrink-0 bg-accent-bg text-accent
+        group-hover:bg-accent group-hover:text-white transition-colors duration-200"
                       >
                         {icon}
                       </span>
@@ -615,12 +582,18 @@ function ServiceCard({
         />
       </div>
       <div className="p-7">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-5 bg-bg group-hover:bg-accent transition-colors duration-200">
+        <div
+          className="w-9 h-9 rounded-lg flex items-center justify-center mb-5
+          bg-bg group-hover:bg-accent transition-colors duration-200"
+        >
           <span className="text-[12px] font-bold text-muted group-hover:text-white transition-colors duration-200">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
-        <h3 className="text-[17px] font-bold font-sans mb-2.5 text-ink group-hover:text-accent transition-colors duration-200">
+        <h3
+          className="text-[17px] font-bold font-sans mb-2.5
+          text-ink group-hover:text-accent transition-colors duration-200"
+        >
           {title}
         </h3>
         <p className="text-[14px] leading-[1.75] text-muted">{desc}</p>
