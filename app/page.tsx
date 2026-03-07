@@ -1,12 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
-
-const NAV = [
-  { id: "home", label: "Home" },
-  { id: "production", label: "Production" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" },
-];
 
 const SERVICES = [
   {
@@ -78,9 +70,7 @@ function PrimaryBtn({
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full
-        bg-accent hover:bg-accent-hover text-white text-[13px] font-semibold
-        tracking-wide border-none cursor-pointer transition-colors duration-200"
+      className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-accent hover:bg-accent-hover text-white text-[13px] font-semibold tracking-wide border-none cursor-pointer transition-colors duration-200"
     >
       {label}
       <svg
@@ -100,10 +90,7 @@ function GhostBtn({ label, onClick }: { label: string; onClick?: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full
-        bg-transparent hover:bg-accent-bg text-ink hover:text-accent
-        border border-subtle hover:border-accent
-        text-[13px] font-semibold tracking-wide cursor-pointer transition-all duration-200"
+      className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-transparent hover:bg-accent-bg text-ink hover:text-accent border border-subtle hover:border-accent text-[13px] font-semibold tracking-wide cursor-pointer transition-all duration-200"
     >
       {label}
     </button>
@@ -111,121 +98,10 @@ function GhostBtn({ label, onClick }: { label: string; onClick?: () => void }) {
 }
 
 export default function Home() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("home");
-
-  useEffect(() => {
-    const fn = () => {
-      setScrolled(window.scrollY > 30);
-      for (const { id } of NAV) {
-        const el = document.getElementById(id);
-        if (el) {
-          const r = el.getBoundingClientRect();
-          if (r.top <= 90 && r.bottom >= 90) {
-            setActive(id);
-            break;
-          }
-        }
-      }
-    };
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
   return (
     <>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');`}</style>
-
       <div className="min-h-screen bg-bg text-ink font-sans antialiased">
-        <header
-          className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-            scrolled
-              ? "bg-bg/95 backdrop-blur-md border-b border-subtle shadow-sm py-3"
-              : "bg-transparent border-b border-transparent py-5"
-          }`}
-        >
-          <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-            <button
-              onClick={() => go("home")}
-              className="flex items-center gap-2.5 bg-transparent border-none cursor-pointer"
-            >
-              <img
-                src="/logo.jpeg"
-                alt="Ethoz"
-                className="w-9 h-9 rounded-lg object-cover"
-              />
-              <span className="text-[18px] font-bold tracking-tight text-ink font-sans">
-                Ethoz
-              </span>
-            </button>
-
-            <nav className="hidden md:flex items-center gap-8">
-              {NAV.map(({ id, label }) => (
-                <button
-                  key={id}
-                  onClick={() => go(id)}
-                  className={`bg-transparent border-none cursor-pointer text-[14px] font-medium
-                    font-sans transition-colors duration-200
-                    ${active === id ? "text-accent" : "text-muted hover:text-ink"}`}
-                >
-                  {label}
-                </button>
-              ))}
-            </nav>
-
-            <div className="hidden md:block">
-              <PrimaryBtn label="Get in Touch" onClick={() => go("contact")} />
-            </div>
-
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden flex flex-col gap-2 bg-transparent border-none cursor-pointer p-1"
-            >
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className={`block w-5 h-[1.5px] rounded bg-ink transition-all duration-300 ${
-                    i === 0 && mobileOpen
-                      ? "rotate-45 translate-y-[6.5px]"
-                      : i === 2 && mobileOpen
-                        ? "-rotate-45 -translate-y-[6.5px]"
-                        : i === 1 && mobileOpen
-                          ? "opacity-0"
-                          : ""
-                  }`}
-                />
-              ))}
-            </button>
-          </div>
-        </header>
-
-        <div
-          className={`fixed inset-0 z-200 bg-surface flex flex-col items-center justify-center gap-8
-          transition-all duration-300
-          ${mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        >
-          <button
-            onClick={() => setMobileOpen(false)}
-            className="absolute top-6 right-6 text-2xl text-muted bg-transparent border-none cursor-pointer"
-          >
-            ✕
-          </button>
-          {NAV.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => {
-                setMobileOpen(false);
-                go(id);
-              }}
-              className="font-serif text-[36px] font-bold text-ink hover:text-accent
-                transition-colors duration-200 bg-transparent border-none cursor-pointer"
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
         <section
           id="home"
           className="relative w-full overflow-hidden bg-subtle/30"
@@ -235,27 +111,18 @@ export default function Home() {
             className="relative w-full flex"
             style={{ minHeight: "calc(92vh - 72px)" }}
           >
-            <div
-              className="relative z-10 flex flex-col justify-center
-              w-full lg:w-[48%] px-8 sm:px-12 lg:px-16 xl:px-24 py-16 lg:py-0"
-            >
+            <div className="relative z-10 flex flex-col justify-center w-full lg:w-[48%] px-8 sm:px-12 lg:px-16 xl:px-24 py-16 lg:py-0">
               <p className="text-[11px] font-semibold tracking-[.25em] uppercase text-muted mb-5">
                 Garment Manufacturer
               </p>
-
-              <h1
-                className="font-serif font-bold leading-[1.08] tracking-tight text-ink mb-6
-                text-[clamp(36px,4.8vw,68px)]"
-              >
+              <h1 className="font-serif font-bold leading-[1.08] tracking-tight text-ink mb-6 text-[clamp(36px,4.8vw,68px)]">
                 ETHOZ
               </h1>
-
               <p className="text-[15px] leading-[1.85] text-muted mb-10 max-w-100">
                 Ethoz is a professional clothing manufacturer partnering with
                 fashion brands to deliver high-quality garments — on time, every
                 time.
               </p>
-
               <div className="flex flex-wrap gap-3 mb-10">
                 <PrimaryBtn
                   label="Our Services"
@@ -266,13 +133,11 @@ export default function Home() {
                   onClick={() => go("contact")}
                 />
               </div>
-
               <div className="flex items-stretch w-fit border border-subtle rounded-2xl overflow-hidden bg-surface/80 backdrop-blur-sm">
                 {STATS.map(({ value, label, sub }, i) => (
                   <div
                     key={sub}
-                    className={`flex flex-col justify-center px-5 py-4
-                      ${i < STATS.length - 1 ? "border-r border-subtle" : ""}`}
+                    className={`flex flex-col justify-center px-5 py-4 ${i < STATS.length - 1 ? "border-r border-subtle" : ""}`}
                   >
                     <span className="font-serif font-bold text-[24px] leading-none text-ink">
                       {value}
@@ -302,7 +167,6 @@ export default function Home() {
                 }}
               />
             </div>
-
             <div className="lg:hidden absolute inset-0 -z-10">
               <img
                 src="/banner.jpeg"
@@ -318,14 +182,10 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-6">
             <div className="max-w-xl mb-14">
               <Tag>Our Services</Tag>
-              <h2
-                className="font-serif font-bold text-ink leading-[1.15] tracking-tight mt-5
-                text-[clamp(32px,4vw,52px)]"
-              >
+              <h2 className="font-serif font-bold text-ink leading-[1.15] tracking-tight mt-5 text-[clamp(32px,4vw,52px)]">
                 Manufacturing services.
               </h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-subtle border border-subtle rounded-2xl overflow-hidden">
               {SERVICES.map(({ title, desc, img }, i) => (
                 <ServiceCard
@@ -345,10 +205,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div>
                 <Tag>About Ethoz</Tag>
-                <h2
-                  className="font-serif font-bold text-ink leading-[1.15] tracking-tight mt-5 mb-7
-                  text-[clamp(30px,3.8vw,48px)]"
-                >
+                <h2 className="font-serif font-bold text-ink leading-[1.15] tracking-tight mt-5 mb-7 text-[clamp(30px,3.8vw,48px)]">
                   Built on quality.
                   <br />
                   Driven by trust.
@@ -372,7 +229,6 @@ export default function Home() {
                     quality control at every stage.
                   </p>
                 </div>
-
                 <div className="mt-9">
                   <PrimaryBtn
                     label="Work With Us"
@@ -380,18 +236,15 @@ export default function Home() {
                   />
                 </div>
               </div>
-
               <div className="md:mt-15">
                 <h3 className="text-[13px] font-semibold tracking-[.18em] uppercase text-muted mb-6">
                   Why brands choose Ethoz
                 </h3>
-
                 <div className="flex flex-col border border-subtle rounded-2xl overflow-hidden bg-surface">
                   {WHY.map((text, i) => (
                     <WhyRow key={i} index={i} text={text} total={WHY.length} />
                   ))}
                 </div>
-
                 <div className="mt-4 p-6 rounded-2xl bg-accent-bg">
                   <p className="text-[15px] leading-[1.75] font-medium text-accent">
                     "We believe every stitch is a promise to the brand that
@@ -418,10 +271,7 @@ export default function Home() {
             <p className="text-[12px] font-semibold tracking-[.2em] uppercase text-white/65 mb-5">
               Ready to get started?
             </p>
-            <h2
-              className="font-serif font-bold text-white leading-[1.1] tracking-tight mb-6
-              text-[clamp(30px,4.5vw,58px)]"
-            >
+            <h2 className="font-serif font-bold text-white leading-[1.1] tracking-tight mb-6 text-[clamp(30px,4.5vw,58px)]">
               Looking for a reliable
               <br />
               manufacturing partner?
@@ -439,10 +289,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
               <div>
                 <Tag>Contact</Tag>
-                <h2
-                  className="font-serif font-bold text-ink leading-[1.15] tracking-tight mt-5 mb-5
-                  text-[clamp(30px,3.8vw,48px)]"
-                >
+                <h2 className="font-serif font-bold text-ink leading-[1.15] tracking-tight mt-5 mb-5 text-[clamp(30px,3.8vw,48px)]">
                   Let's work
                   <br />
                   together.
@@ -451,7 +298,6 @@ export default function Home() {
                   Tell us about your brand and what you need. We respond within
                   one business day.
                 </p>
-
                 <div className="flex flex-col gap-6">
                   {[
                     {
@@ -482,11 +328,7 @@ export default function Home() {
                       }
                       className="flex items-center gap-4 no-underline group"
                     >
-                      <span
-                        className="w-10 h-10 rounded-xl flex items-center justify-center
-        text-[15px] shrink-0 bg-accent-bg text-accent
-        group-hover:bg-accent group-hover:text-white transition-colors duration-200"
-                      >
+                      <span className="w-10 h-10 rounded-xl flex items-center justify-center text-[15px] shrink-0 bg-accent-bg text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-200">
                         {icon}
                       </span>
                       <div>
@@ -501,7 +343,6 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-
               <div className="rounded-2xl p-8 md:p-10 bg-bg border border-subtle">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                   {["First Name", "Last Name"].map((l) => (
@@ -512,14 +353,11 @@ export default function Home() {
                       <input
                         type="text"
                         placeholder={`Enter ${l.toLowerCase()}`}
-                        className="w-full px-4 py-3 rounded-xl text-[14px] text-ink bg-surface
-                          border border-subtle outline-none
-                          focus:border-accent transition-colors duration-200 font-sans"
+                        className="w-full px-4 py-3 rounded-xl text-[14px] text-ink bg-surface border border-subtle outline-none focus:border-accent transition-colors duration-200 font-sans"
                       />
                     </div>
                   ))}
                 </div>
-
                 {[
                   { l: "Brand / Company", p: "Your brand name", t: "text" },
                   { l: "Email Address", p: "you@brand.com", t: "email" },
@@ -531,13 +369,10 @@ export default function Home() {
                     <input
                       type={t}
                       placeholder={p}
-                      className="w-full px-4 py-3 rounded-xl text-[14px] text-ink bg-surface
-                        border border-subtle outline-none
-                        focus:border-accent transition-colors duration-200 font-sans"
+                      className="w-full px-4 py-3 rounded-xl text-[14px] text-ink bg-surface border border-subtle outline-none focus:border-accent transition-colors duration-200 font-sans"
                     />
                   </div>
                 ))}
-
                 <div className="mb-6">
                   <label className="block text-[12px] font-semibold text-muted mb-2">
                     Message
@@ -545,12 +380,9 @@ export default function Home() {
                   <textarea
                     rows={4}
                     placeholder="Tell us about your project…"
-                    className="w-full px-4 py-3 rounded-xl text-[14px] text-ink bg-surface
-                      border border-subtle outline-none resize-none
-                      focus:border-accent transition-colors duration-200 font-sans"
+                    className="w-full px-4 py-3 rounded-xl text-[14px] text-ink bg-surface border border-subtle outline-none resize-none focus:border-accent transition-colors duration-200 font-sans"
                   />
                 </div>
-
                 <SubmitBtn />
               </div>
             </div>
@@ -582,18 +414,12 @@ function ServiceCard({
         />
       </div>
       <div className="p-7">
-        <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center mb-5
-          bg-bg group-hover:bg-accent transition-colors duration-200"
-        >
+        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-5 bg-bg group-hover:bg-accent transition-colors duration-200">
           <span className="text-[12px] font-bold text-muted group-hover:text-white transition-colors duration-200">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
-        <h3
-          className="text-[17px] font-bold font-sans mb-2.5
-          text-ink group-hover:text-accent transition-colors duration-200"
-        >
+        <h3 className="text-[17px] font-bold font-sans mb-2.5 text-ink group-hover:text-accent transition-colors duration-200">
           {title}
         </h3>
         <p className="text-[14px] leading-[1.75] text-muted">{desc}</p>
@@ -613,9 +439,7 @@ function WhyRow({
 }) {
   return (
     <div
-      className={`group flex items-center gap-4 px-5 py-4 cursor-default
-      hover:bg-accent-bg transition-colors duration-200
-      ${index < total - 1 ? "border-b border-subtle" : ""}`}
+      className={`group flex items-center gap-4 px-5 py-4 cursor-default hover:bg-accent-bg transition-colors duration-200 ${index < total - 1 ? "border-b border-subtle" : ""}`}
     >
       <span className="w-6 h-6 rounded-full flex items-center justify-center shrink-0 bg-accent-bg group-hover:bg-accent transition-colors duration-200">
         <svg
@@ -637,9 +461,7 @@ function CtaWhiteBtn({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="inline-flex items-center gap-3 px-8 py-4 rounded-full
-        bg-white hover:bg-ink text-accent hover:text-white
-        text-[14px] font-semibold border-none cursor-pointer transition-all duration-200"
+      className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-ink text-accent hover:text-white text-[14px] font-semibold border-none cursor-pointer transition-all duration-200"
     >
       Start Manufacturing
       <svg
@@ -657,11 +479,7 @@ function CtaWhiteBtn({ onClick }: { onClick: () => void }) {
 
 function SubmitBtn() {
   return (
-    <button
-      className="w-full flex items-center justify-center gap-3 py-4 rounded-xl
-        bg-accent hover:bg-accent-hover text-white
-        text-[14px] font-semibold border-none cursor-pointer transition-colors duration-200"
-    >
+    <button className="w-full flex items-center justify-center gap-3 py-4 rounded-xl bg-accent hover:bg-accent-hover text-white text-[14px] font-semibold border-none cursor-pointer transition-colors duration-200">
       Send Message
       <svg
         className="w-4 h-4"

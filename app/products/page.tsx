@@ -293,37 +293,7 @@ export default function OurProducts() {
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');`}</style>
 
       <div className="min-h-screen bg-bg text-ink font-sans antialiased">
-        <div className="bg-surface border-b border-subtle sticky top-0 z-40">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-2.5 no-underline">
-              <img
-                src="/logo.jpeg"
-                alt="Ethoz"
-                className="w-8 h-8 rounded-lg object-cover"
-              />
-              <span className="text-[17px] font-bold tracking-tight text-ink font-sans">
-                Ethoz
-              </span>
-            </a>
-            <a
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-white text-[13px] font-semibold no-underline hover:opacity-90 transition-opacity"
-            >
-              Get in Touch
-              <svg
-                className="w-3 h-3"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <div className="bg-surface py-12 md:py-16 border-b border-subtle">
+        <div className="bg-surface py-15 md:py-24 border-b border-subtle">
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left: Text */}

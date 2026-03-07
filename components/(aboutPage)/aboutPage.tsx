@@ -160,36 +160,6 @@ export default function AboutPage() {
       `}</style>
 
       <div className="min-h-screen bg-bg text-ink font-sans antialiased">
-        <header className="bg-bg/95 backdrop-blur-md border-b border-subtle py-4 sticky top-0 z-50">
-          <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2.5 no-underline">
-              <img
-                src="/logo.jpeg"
-                alt="Ethoz"
-                className="w-9 h-9 rounded-lg object-cover"
-              />
-              <span className="text-[18px] font-bold tracking-tight text-ink font-sans">
-                Ethoz
-              </span>
-            </Link>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-[13px] font-semibold text-muted hover:text-ink transition-colors duration-200 no-underline"
-            >
-              <svg
-                className="w-4 h-4 rotate-180"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-              Back to Home
-            </Link>
-          </div>
-        </header>
-
         <section className="relative overflow-hidden bg-ink">
           <div className="absolute inset-0">
             <img
@@ -200,7 +170,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-linear-to-r from-ink via-ink/95 to-ink/50" />
           </div>
 
-          <div className="relative max-w-6xl mx-auto px-6 py-10 ">
+          <div className="relative max-w-6xl mx-auto px-6 py-20 ">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 lg:gap-20 items-center">
               <div>
                 <h1 className="font-serif font-bold text-white leading-[1.08] tracking-tight mt-5 mb-8 text-[clamp(38px,5vw,72px)]">
